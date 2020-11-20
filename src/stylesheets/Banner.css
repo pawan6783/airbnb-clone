@@ -26,6 +26,13 @@
     margin-top: 10px;
 }
 
+.banner_searchButton{
+    background-color: white;
+    font-weight: 900;
+    text-transform: inherit;
+    color: #ff7779;
+}
+
 .banner_info > button:hover {
     background-color: white;
     color:  #ff7779;
@@ -36,10 +43,5 @@
     flex-direction: column;
 }
 
-.banner_searchButton{
-    background-color: white;
-    font-weight: 900;
-    text-transform: inherit;
-    color: #ff7779;
-}
+
 
