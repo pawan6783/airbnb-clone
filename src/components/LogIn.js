@@ -1,4 +1,5 @@
 import { Button } from '@material-ui/core';
+import { Home } from '@material-ui/icons';
 import Axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -16,6 +17,7 @@ function LogIn() {
         password: ""
     });
 
+    let flag = false;
     const onChangeHandler = event => {
         const target = event.target;
         const name = event.target.name;
@@ -26,21 +28,32 @@ function LogIn() {
         });
     }
 
-    const onSubmitHandler = event => {
+    const onSubmitHandler = (event) => {
         event.preventDefault();
         const tempUser = {...user};
         console.log(tempUser);
-        Axios.post(BASE_API_URL,tempUser)
+        const theUser =  Axios.get(BASE_API_URL,{
+            params:{
+                email:tempUser.email,
+                password: tempUser.password
+            }
+        })
         .then(res => {
             console.log(JSON.stringify(res));      
         } )
         .catch(error => console.log(error));
-        
+        console.log(theUser);
+        if(theUser.email === tempUser.email && theUser.password === tempUser.password){
+            return(
+                <Home></Home>
+            );
+        }
+        flag = true;
     }
  
     return (
         <div className="login">
-            <header></header>
+            {/* <header></header> */}
             <div className="login-card">
                 <h5>Log in</h5>
                 <form>
@@ -53,9 +66,8 @@ function LogIn() {
                     placeholder="Password"
                     onChange={onChangeHandler}></input>
                     <Button type="submit" onClick={onSubmitHandler}>Continue</Button>
+                    { flag && <h4 style={{color:"red"}}>Invalid email or password</h4>  }
                 </form>
-                
-                <Link to="/signUp">Create account</Link>
             </div>
         </div>
     )

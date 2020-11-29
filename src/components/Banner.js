@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../stylesheets/Banner.css';
-import { Button } from "@material-ui/core";
+import { Button, Card, Collapse } from "@material-ui/core";
 import Search from './Search';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link} from "react-router-dom";
 
-function Banner() {
+function Banner({collapse}) {
     const history = useHistory();
     const [showSearch, setShowSearch] = useState(false);
 
