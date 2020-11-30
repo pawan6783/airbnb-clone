@@ -45,10 +45,11 @@ function LogIn() {
         console.log(theUser);
         if(theUser.email === tempUser.email && theUser.password === tempUser.password){
             return(
-                <Home></Home>
+                <LoginHome></LoginHome>
             );
         }
         flag = true;
+        window.location.reload(true);
     }
  
     return (

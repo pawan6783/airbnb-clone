@@ -5,25 +5,25 @@ import LanguageIcon from '@material-ui/icons/Language';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/icons/AccountCircle';
 import { Link, useHistory } from 'react-router-dom';
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
+import { Collapse, Button, CardBody, Card, Label } from 'reactstrap';
 import Banner from './Banner';
+import Popup from 'reactjs-popup';
+import SignUp from './SignUp';
+import LogIn from './LogIn';
+
 
 function Header() {
     const history = useHistory();
-    const [collapse,setCollapse] = useState(false);
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
 
-    const toggle = () => {
-        console.log(collapse);
+    const [openLogin, setOpenLogin] = useState(false);
+    const closeModalLogin = () => setOpenLogin(false);
 
-        setCollapse(!collapse);
-        
-        console.log("toggle clicked");
-         
-    }
-    useEffect(() => {
-        console.log(collapse);
-        return <Banner flag={collapse}></Banner>
-    }, [collapse])
+    const [value, setValue] = useState(false);
+    const closeModelvalue = () => setValue(false);
+  
+
     return (
         <div>
             <div className="header">
@@ -40,12 +40,31 @@ function Header() {
                     <p>Become a host</p>
                     <LanguageIcon></LanguageIcon>
                     <ExpandMoreIcon></ExpandMoreIcon>
-                    <Link className="link" to="/SignUp">Sign up</Link>
-                    <Link className="link" to="/Login">Log up</Link>
+                    <Popup trigger={<Avatar></Avatar>} position="bottom center">
+                        <div className="popup-content">
+                            <Link className="link" onClick={() => setOpen(o => !o)}>Sign up</Link>
+                            <Link className="link" onClick={() => setOpenLogin(o => !o)}>Log in</Link>
+                        </div>
+                    </Popup>
+
+                    <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+                
+                       <div className="signup">
+                           <SignUp ></SignUp>
+                       </div>
+                  
+                    </Popup>
+                    <Popup open={openLogin} closeOnDocumentClick onClose={closeModalLogin}>
+                
+                <div className="signup">
+                    <LogIn ></LogIn>
                 </div>
-            </div>
            
-        </div>
+             </Popup>
+                </div>
+                </div>
+
+            </div>
     )
 }
 

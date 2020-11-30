@@ -1,0 +1,16 @@
+.signup{
+    background-color: white;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.signup > .btn{
+    align-items: center;
+    background-color: blue;
+    font: 1px soli;
+}
+
+.signup > .btn:hover{
+    opacity: 0.8;
+    
+}

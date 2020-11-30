@@ -5,7 +5,7 @@ import Card from './Card';
 
 // ES7 snippets to do 'rfce'
 
-function Home() {
+function LoginHome() {
     return (
         <div className='home'>
            
@@ -52,4 +52,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default LoginHome;

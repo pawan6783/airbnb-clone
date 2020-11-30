@@ -10,10 +10,19 @@
     height: 100px;
 }
 
+.popup-content{
+    display: flex;
+    flex-direction: column;
+    
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
+}
+
 .link{
     text-decoration: none;
     color: black;
-    margin: 10px;
 }
 
 .header_icon{
@@ -47,4 +56,12 @@
     justify-content: space-between;
     width: 15vw;
     margin-right: 80px;
+}
+
+.signup{
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    height: 200px;
+    margin: 20px;
 }
