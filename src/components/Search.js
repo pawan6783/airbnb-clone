@@ -6,6 +6,7 @@ import { DateRangePicker } from "react-date-range";
 import { Button } from "@material-ui/core";
 import PeopleIcon from "@material-ui/icons/People";
 import { useHistory } from "react-router-dom";
+import Axios from 'axios';
 
 function Search() {
     const history = useHistory();
@@ -17,6 +18,8 @@ function Search() {
         endDate: endDate,
         key: "selection",
       };
+
+   
 
     function handleSelect(ranges) {
         setStartDate(ranges.selection.startDate);

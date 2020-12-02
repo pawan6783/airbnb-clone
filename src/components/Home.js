@@ -2,13 +2,14 @@ import React from 'react';
 import '../stylesheets/Home.css';
 import Banner from './Banner';
 import Card from './Card';
+import Header from './Header';
 
 // ES7 snippets to do 'rfce'
 
 function Home() {
     return (
         <div className='home'>
-           
+           <Header/>
             <Banner />
 
             <div className='home__section'>

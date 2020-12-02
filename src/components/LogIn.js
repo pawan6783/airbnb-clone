@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import '../stylesheets/LogIn.css';
 
-const BASE_API_URL = "http://localhost:8080/user/sign-up";
+const BASE_API_URL = "http://localhost:8080/user/login";
 
 function LogIn() {
     const history = useHistory();
@@ -29,27 +29,26 @@ function LogIn() {
     }
 
     const onSubmitHandler = (event) => {
+        let theUser = null;
         event.preventDefault();
-        const tempUser = {...user};
+        let tempUser = {...user};
         console.log(tempUser);
-        const theUser =  Axios.get(BASE_API_URL,{
+        Axios.get(BASE_API_URL,{
             params:{
                 email:tempUser.email,
                 password: tempUser.password
             }
         })
         .then(res => {
-            console.log(JSON.stringify(res));      
+            theUser = res.data;
+            console.log(JSON.stringify(theUser));  
+            if(theUser.email == tempUser.email && theUser.password == tempUser.password){
+                history.push("/login-home");
+            }    
         } )
         .catch(error => console.log(error));
-        console.log(theUser);
-        if(theUser.email === tempUser.email && theUser.password === tempUser.password){
-            return(
-                <LoginHome></LoginHome>
-            );
-        }
+        
         flag = true;
-        window.location.reload(true);
     }
  
     return (

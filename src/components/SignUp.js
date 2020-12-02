@@ -28,7 +28,6 @@ function SignUp() {
     }
 
     const onSubmitHandler = event => {
-
         const tempUser = { ...user };
         console.log(tempUser);
 
@@ -39,7 +38,6 @@ function SignUp() {
             })
             .catch(error => console.log(error));
             history.push("/");
-            window.location.reload(true);
        
     }
     return (

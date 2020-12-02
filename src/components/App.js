@@ -6,12 +6,13 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import SearchPage from './SearchPage';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
+import LoginHome from './LoginHome';
 
 function App() {
   return (
     <div className="app">
       <Router>
-        <Header/>
+        
         <Switch>
           <Route path="/search">
             <SearchPage/>
@@ -23,6 +24,10 @@ function App() {
 
           <Route path="/logIn">
             <LogIn/>
+          </Route>
+
+          <Route path="/login-home">
+            <LoginHome/>
           </Route>
 
           <Route path="/">

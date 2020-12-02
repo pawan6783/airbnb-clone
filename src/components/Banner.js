@@ -3,11 +3,15 @@ import '../stylesheets/Banner.css';
 import { Button, Card, Collapse } from "@material-ui/core";
 import Search from './Search';
 import { useHistory, Link} from "react-router-dom";
+import Axios from 'axios';
+import SearchPage from './SearchPage';
+
 
 function Banner({collapse}) {
     const history = useHistory();
     const [showSearch, setShowSearch] = useState(false);
 
+    
     return (
         <div className='banner'>
             <div className='banner__search'>
@@ -22,7 +26,7 @@ function Banner({collapse}) {
                 <h5>
                     Plan a different kind of getaway to uncover the hidden gems near you.
                 </h5>
-                <Button onClick={() => history.push('/search')} variant='outlined'>Explore Nearby</Button>
+                <Button onClick={() => history.push("/search")} variant='outlined'>Explore Nearby</Button>
             </div>
         </div>
     )

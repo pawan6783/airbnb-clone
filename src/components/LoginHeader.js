@@ -12,7 +12,7 @@ import SignUp from './SignUp';
 import LogIn from './LogIn';
 
 
-function Header() {
+function LoginHeader() {
     const history = useHistory();
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
@@ -22,7 +22,7 @@ function Header() {
 
     const [value, setValue] = useState(false);
     const closeModelvalue = () => setValue(false);
-
+  
 
     return (
         <div>
@@ -40,32 +40,12 @@ function Header() {
                     <p>Become a host</p>
                     <LanguageIcon></LanguageIcon>
                     <ExpandMoreIcon></ExpandMoreIcon>
-                    <Popup trigger={<Avatar></Avatar>} position="bottom center">
-                        <div className="popup-content">
-                            <Link className="link" onClick={() => setOpen(o => !o)}>Sign up</Link>
-                            <Link className="link" onClick={() => setOpenLogin(o => !o)}>Log in</Link>
-                        </div>
-                    </Popup>
-
-                    <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-
-                        <div className="signup">
-                            <SignUp ></SignUp>
-                        </div>
-
-                    </Popup>
-                    <Popup open={openLogin} closeOnDocumentClick onClose={closeModalLogin}>
-
-                        <div className="signup">
-                            <LogIn ></LogIn>
-                        </div>
-
-                    </Popup>
+                    <h3>Welcome</h3>
                 </div>
-            </div>
+                </div>
 
-        </div>
+            </div>
     )
 }
 
-export default Header;
+export default LoginHeader;
