@@ -14,3 +14,15 @@
     opacity: 0.8;
     
 }
+
+.google{
+    color: gray;
+    align-items: center;
+}
+
+.btn-google{
+    background-color: pink;
+    color: pink;
+    border-radius: 10px;
+
+}

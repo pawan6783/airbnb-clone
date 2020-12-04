@@ -10,23 +10,35 @@ class SearchPage extends Component {
     constructor(props){
         super();
         this.state = {
-            houses: []
+            houses: [],
+            location: "",
+            guests: ""
         }
 
     }
     
-    componentDidMount(){
-        this.getAllHouses();
+    componentDidMount(props){
+
+        console.log(props);
+        this.getAllHouses(props);
         console.log(this.state.houses);
     }
 
 
-    getAllHouses = async () => {
+    getAllHouses = async (props) => {
+        console.log("inside getAllHouses");
         const result = await Axios.get(BASE_API_URL);
+        const tempData = result.data;
+        console.log(tempData);
+        console.log(this.props);
+        const data = tempData.filter(e => e.location ==   this.props.email
+ 
+            && e.guests <= this.props.guests)
+        
+        console.log(data);
         this.setState({
-            houses: result.data
+            houses: data
         });
-        console.log(result.data);
     }
 
     render(){
