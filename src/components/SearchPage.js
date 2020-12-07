@@ -3,12 +3,13 @@ import '../stylesheets/SearchPage.css';
 import { Button } from "@material-ui/core";
 import SearchResult from "./SearchResult";
 import Axios from 'axios';
+import Header from './Header';
 
 const BASE_API_URL = "http://localhost:8080/house";
 
 class SearchPage extends Component {
     constructor(props){
-        super();
+        super(props);
         this.state = {
             houses: [],
             location: "",
@@ -16,6 +17,8 @@ class SearchPage extends Component {
         }
 
     }
+
+    
     
     componentDidMount(props){
 
@@ -28,34 +31,39 @@ class SearchPage extends Component {
     getAllHouses = async (props) => {
         console.log("inside getAllHouses");
         const result = await Axios.get(BASE_API_URL);
-        const tempData = result.data;
-        console.log(tempData);
-        console.log(this.props);
-        const data = tempData.filter(e => e.location ==   this.props.email
- 
-            && e.guests <= this.props.guests)
+       
+        // const tempData = result.data;
+        // const data = tempData.map(e => e.location == this.location.state.location
+        //     && e.guests <= this.location.state.guests);
         
-        console.log(data);
+        //     this.setState({
+        //         housese: data
+        //     });
+
         this.setState({
-            houses: data
+            houses: result.data
         });
+
     }
 
     render(){
 
         let list = this.state.houses.map(data => {
             return <SearchResult
+
+                id={data.id}
                 img={data.img}
                 location={data.area}
                 title={data.name}
                 description={data.description}
                 star={4.73}
-                price={`INR ${data.price} /Day`} />
+                price={`₹ ${data.price} /Day`} />
 
             });
 
         return (
             <div className='searchPage'>
+                <Header></Header>
                 <div className='searchPage__info'>
                     <p>62 stays · 26 august to 30 august · 2 guest</p>
                     <h1>Stays nearby</h1>

@@ -13,54 +13,42 @@ import LogIn from './LogIn';
 import SearchPage from './SearchPage';
 
 
-class Header extends Component{
+function Header(props){
     
-    // const [open, setOpen] = useState(false);
-    // const closeModal = () => setOpen(false);
+    const history = useHistory();
 
-    // const [openLogin, setOpenLogin] = useState(false);
-    // const closeModalLogin = () => setOpenLogin(false);
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
+
+    const [openLogin, setOpenLogin] = useState(false);
+    const closeModalLogin = () => setOpenLogin(false);
 
     const [value, setValue] = useState(false);
-    // const closeModelvalue = () => setValue(false);
+    const closeModelvalue = () => setValue(false);
 
-    // const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(false);
 
-    constructor(props){
-        this.state = {
-            info: {
-                location: "",
-            checkIn: "",
-            checkOut: "",
-            guests: ""
-            },
-            open: false,
-            openLogin: false,
-        }
-    }
-    // const [info, setInfo] = useState({
-    //     location: "",
-    //     checkIn: "",
-    //     checkOut: "",
-    //     guests: ""
-    // });
+    const [info, setInfo] = useState({
+        location: "",
+        checkIn: "",
+        checkOut: "",
+        guests: ""
+    });
 
-     onChangeHandler = event => {
-
-        this.setState(({info}) => {
-            info.[event.target.name] = event.target.value
+    const onChangeHandler = event => {
+        
+        setInfo({
+            ...info,
+            [event.target.name]: event.target.value
         });
-
     }
-     onClickHandler = () =>{
+    const onClickHandler = () =>{
         console.log("inside searchIcon handler");
-        this.context.router.push({
-            pathname: '/confirmation',
-            state: {email: this.state.email}  
-        })
+        history.push("/search",[info]);
+       
     }
 
-    render(){
+  
         return (
             <div>
                 <div className="header">
@@ -70,12 +58,12 @@ class Header extends Component{
                     </Link>
     
                     <div className="header_center">
-                        <input type="text" name="location" placeholder="Location" onChange={this.onChangeHandler}></input>
-                        <input type="date" name="checkIn" placeholder="Check in" onChange={this.onChangeHandler}></input>
-                        <input type="date" name="checkOut" placeholder="Check out" onChange={this.onChangeHandler}></input>
-                        <input type="text" name="guests" placeholder="Guests" onChange={this.onChangeHandler}></input>
+                        <input type="text" name="location" placeholder="Location" onChange={onChangeHandler}></input>
+                        <input type="date" name="checkIn" placeholder="Check in" onChange={onChangeHandler}></input>
+                        <input type="date" name="checkOut" placeholder="Check out" onChange={onChangeHandler}></input>
+                        <input type="text" name="guests" placeholder="Guests" onChange={onChangeHandler}></input>
     
-                        <SearchIcon onClick={this.onClickHandler}></SearchIcon>
+                        <SearchIcon onClick={onClickHandler}></SearchIcon>
                     </div>
     
                     <div className="header_right">
@@ -107,7 +95,6 @@ class Header extends Component{
                 </div>
             </div>
         )
-    }
     
 }
 
