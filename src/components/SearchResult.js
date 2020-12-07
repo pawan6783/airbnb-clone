@@ -2,8 +2,11 @@ import React from 'react';
 import '../stylesheets/SearchResult.css';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import StarIcon from '@material-ui/icons/Star';
+import Details from './Details';
+import { useHistory } from 'react-router-dom';
 
 function SearchResult({
+    id,
     img,
     location,
     title,
@@ -12,8 +15,14 @@ function SearchResult({
     price,
     total
 }) {
+    const history = useHistory();
+    const onClickHandler = id => {
+        history.push(`/search-details/${id}`);
+        console.log("inside onclickhandler");
+    }
     return (
-        <div className="searchResult"> 
+        <div className="searchResult" 
+        onClick={() => onClickHandler(id)}> 
             <img src={img} alt=""></img>
             <FavoriteBorderIcon 
             className="searchResult_heart"/>

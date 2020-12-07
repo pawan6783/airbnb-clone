@@ -40,7 +40,32 @@ function SignUp() {
             history.push("/");
        
     }
-    return (
+
+    // const googleSignUpHandler= event => {
+    //     var provider = new firebase.auth.GoogleAuthProvider();
+
+    //     firebase.auth().signInWithPopup(provider).then(function(result) {
+    //         // This gives you a Google Access Token. You can use it to access the Google API.
+    //         var token = result.credential.accessToken;
+    //         // The signed-in user info.
+    //         var user = result.user;
+    //         // ...
+    //       }).catch(function(error) {
+    //         // Handle Errors here.
+    //         console.log(error);
+    //       });
+
+    //       firebase.auth().onAuthStateChanged(function(user) {
+    //         if (user) {
+    //             history.push("/login-home");
+    //           // User is signed in.
+    //         } else {
+    //           // No user is signed in.
+    //           history.push("/");
+    //         }
+    //       });
+    // }
+     return (
 
         <form >
             <table>
@@ -97,6 +122,9 @@ function SignUp() {
                 </tr>
             </table>
             <Button className="btn" type="submit" onClick={onSubmitHandler}>Save</Button>
+            <div className="google">
+            <Button className="btn-google" >Sign up with Google</Button>
+            </div>
         </form>
 
     )

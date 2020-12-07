@@ -7,9 +7,10 @@ import Axios from 'axios';
 import SearchPage from './SearchPage';
 
 
-function Banner({collapse}) {
+function Banner(props) {
     const history = useHistory();
     const [showSearch, setShowSearch] = useState(false);
+    
 
     
     return (
@@ -17,9 +18,9 @@ function Banner({collapse}) {
             <div className='banner__search'>
                 {showSearch && <Search />}
 
-                <Button onClick={() => setShowSearch(!showSearch)} className='banner__searchButton' variant='outlined'>
+                {/* <Button onClick={() => setShowSearch(!showSearch)} className='banner__searchButton' variant='outlined'>
                     {showSearch ? "Hide" : "Search Dates"}
-                </Button>
+                </Button> */}
             </div>
             <div className='banner__info'>
                 <h1>Get out and stretch your imagination</h1>

@@ -1,0 +1,40 @@
+.detail_card {
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+
+  .detail_card > img {
+      margin-left: 15px;
+    object-fit: fill;
+    min-width: 200px;
+    min-height: 150px;
+    margin-top: 5px;
+    width: 70%;
+    min-height: 200px;
+    width: 60%;
+    border-radius: 10px;
+  }
+  
+  .detail_card_info {
+      margin-top: -9px;
+      border-radius: 10px;
+      padding: 20px;
+      padding-top: 20px;
+      border: 1;
+    }
+  
+    .detail_card_info > h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .detail_card_info > h4 {
+      font-size: 14px;
+      font-weight: 300;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
