@@ -46,7 +46,7 @@ export default class Details extends Component {
                 <h1>{this.state.house.name}</h1>
                 <p>
                     <StarIcon className="searchResult_star"></StarIcon>
-                    {this.state.house.city} {this.state.house.country}
+                    {this.state.house.city} {this.state.house.state}
                 </p>
                 <img src={this.state.house.img} alt="" />
                 <div className="detail_card_info">

@@ -1,76 +1,121 @@
-import { Button } from '@material-ui/core';
-import { Home } from '@material-ui/icons';
-import Axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import '../stylesheets/LogIn.css';
+import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 
-const BASE_API_URL = "http://localhost:8080/user/login";
+import AuthService from "../services/auth.service";
 
-function LogIn() {
-    const history = useHistory();
-    const [user,setUser] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        dob: "",
-        password: ""
-    });
+const required = value => {
+    if (!value) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
+        );
+    }
+};
+class LogIn extends Component {
 
-    let flag = false;
-    const onChangeHandler = event => {
-        const target = event.target;
-        const name = event.target.name;
+    constructor(props) {
+        super(props);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
-        setUser({
-            ...user,
-            [name]: target.value
+        this.state = {
+            username: "",
+            password: "",
+            loading: false,
+            message: ""
+        };
+    }
+
+    onChangeUsername(e) {
+        this.setState({
+            username: e.target.value
         });
     }
 
-    const onSubmitHandler = (event) => {
-        let theUser = null;
-        event.preventDefault();
-        let tempUser = {...user};
-        console.log(tempUser);
-        Axios.get(BASE_API_URL,{
-            params:{
-                email:tempUser.email,
-                password: tempUser.password
-            }
-        })
-        .then(res => {
-            theUser = res.data;
-            console.log(JSON.stringify(theUser));  
-            if(theUser.email == tempUser.email && theUser.password == tempUser.password){
-                history.push("/login-home");
-            }    
-        } )
-        .catch(error => console.log(error));
-        
-        flag = true;
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        });
     }
- 
-    return (
-        <div className="login">
-            {/* <header></header> */}
-            <div className="login-card">
-                <h5>Log in</h5>
-                <form>
-                    <input type="email" 
-                    name="email"
-                    placeholder="Email"
-                    onChange={onChangeHandler}></input>
-                    <input type="password" 
-                    name="password"
-                    placeholder="Password"
-                    onChange={onChangeHandler}></input>
-                    <Button type="submit" onClick={onSubmitHandler}>Continue</Button>
-                    { flag && <h4 style={{color:"red"}}>Invalid email or password</h4>  }
-                </form>
+
+    handleLogin(e) {
+        e.preventDefault();
+
+        this.setState({
+            message: "",
+            loading: true
+        });
+
+        this.form.validateAll();
+
+        if (this.checkBtn.context._errors.length === 0) {
+            AuthService.login(this.state.username, this.state.password).then(
+                () => {
+                    this.props.history.push("/profile");
+                    window.location.reload();
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
+                    this.setState({
+                        loading: false,
+                        message: resMessage
+                    });
+                }
+            );
+        } else {
+            this.setState({
+                loading: false
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div className="login">
+                {/* <header></header> */}
+                <div className="login-card">
+                    <h5>Log in</h5>
+
+                    <Form
+                        onSubmit={this.handleLogin}
+                        ref={c => {
+                            this.form = c;
+                        }}
+                    >
+                        <Input
+                            type="text"
+                            className="form-control"
+                            placeholder="Email"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.onChangeUsername}
+                            validations={[required]}
+                        />
+                        <Input
+                            type="password"
+                            className="form-control"
+                            placeholder="Password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.onChangePassword}
+                            validations={[required]}
+                        />
+                        <Button type="submit">Continue</Button>
+                    </Form>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default LogIn;

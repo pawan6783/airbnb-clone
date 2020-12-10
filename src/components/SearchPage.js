@@ -63,7 +63,6 @@ class SearchPage extends Component {
 
         return (
             <div className='searchPage'>
-                <Header></Header>
                 <div className='searchPage__info'>
                     <p>62 stays · 26 august to 30 august · 2 guest</p>
                     <h1>Stays nearby</h1>

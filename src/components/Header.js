@@ -8,8 +8,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { Collapse, Button, CardBody, Card, Label } from 'reactstrap';
 import Banner from './Banner';
 import Popup from 'reactjs-popup';
-import SignUp from './SignUp';
-import LogIn from './LogIn';
+import SignUp from './register.component';
+import LogIn from './login.component';
 import SearchPage from './SearchPage';
 
 
