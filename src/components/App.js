@@ -4,10 +4,9 @@ import Header from './Header';
 import Footer from './Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchPage from './SearchPage';
-import LogIn from './LogIn';
-import SignUp from './SignUp';
 import LoginHome from './LoginHome';
 import Details from './Details';
+import Search from './Search';
 
 function App() {
   return (
@@ -21,11 +20,14 @@ function App() {
           <Route exact path="/search" component={SearchPage}>
           </Route>
 
-          <Route exact path="/signUp" component={SignUp}>
+          <Route exact path="/search-info" component={Search}>
+          </Route>
+
+          {/* <Route exact path="/signUp" component={SignUp}>
           </Route>
 
           <Route exact path="/logIn" component={Login}>
-          </Route>
+          </Route> */}
 
           <Route exact path="/login-home" component={LoginHome}>
           </Route>

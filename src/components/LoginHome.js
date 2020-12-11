@@ -2,9 +2,7 @@ import React from 'react';
 import '../stylesheets/Home.css';
 import Banner from './Banner';
 import Card from './Card';
-import LoginHeader from './LoginHeader';
 
-// ES7 snippets to do 'rfce'
 
 function LoginHome() {
     return (

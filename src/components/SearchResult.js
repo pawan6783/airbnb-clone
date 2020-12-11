@@ -2,7 +2,6 @@ import React from 'react';
 import '../stylesheets/SearchResult.css';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import StarIcon from '@material-ui/icons/Star';
-import Details from './Details';
 import { useHistory } from 'react-router-dom';
 
 function SearchResult({
