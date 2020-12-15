@@ -61,12 +61,12 @@ class Header extends Component {
                         <p>Become a host</p>
                         <LanguageIcon></LanguageIcon>
                         <ExpandMoreIcon></ExpandMoreIcon>
-                        {/* <Popup trigger={<Avatar></Avatar>} position="bottom center">
+                        <Popup trigger={<Avatar></Avatar>} position="bottom center">
                             <div className="popup-content">
-                                <Link className="link" onClick={() => setOpen(o => !o)}>Sign up</Link>
-                                <Link className="link" onClick={() => setOpenLogin(o => !o)}>Log in</Link>
+                                <Link className="link" to="/sign-up">Sign up</Link>
+                                <Link className="link" to="/login">Log in</Link>
                             </div>
-                        </Popup> */}
+                        </Popup>
 
                         {/* <Popup open={open} closeOnDocumentClick onClose={closeModal}>
 
