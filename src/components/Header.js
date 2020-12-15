@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/icons/AccountCircle';
 import { Link, useHistory } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import AuthService from './AuthService';
 
 class Header extends Component {
 
@@ -13,11 +14,13 @@ class Header extends Component {
         super(props);
 
         this.state = {
+            currentUser: AuthService.getCurrentUser(),
             houseInfo: {
                 location: "",
                 guests: ""
             }
         }
+        console.log(this.state.currentUser);
     }
 
     onChangeHandler = event => {
@@ -33,6 +36,10 @@ class Header extends Component {
            houseInfo: currentInfo
         });
     }
+
+    logOut() {
+        AuthService.logout();
+      }
 
     render() {
         return (
@@ -63,25 +70,33 @@ class Header extends Component {
                         <ExpandMoreIcon></ExpandMoreIcon>
                         <Popup trigger={<Avatar></Avatar>} position="bottom center">
                             <div className="popup-content">
-                                <Link className="link" to="/sign-up">Sign up</Link>
-                                <Link className="link" to="/login">Log in</Link>
+                                { this.state.currentUser === null ? 
+                                <div>
+                                    <div>
+                                        
+                                    <Link className="link" to="/sign-up">Sign up</Link>
+                                    </div>
+                                   
+                                    <div>
+                                    <Link className="link" to="/login">Log in</Link>
+                                    </div>        
+                                </div> :
+                                    <div>
+                                    <div>
+                                    <Link className="link" to="/sign-up"><h3>{this.state.currentUser.username}</h3></Link>
+                                    </div>
+                                   
+                                    <div>
+                                    <Link className="link" to="/" onClick={this.logOut}>Log Out</Link>
+                                    
+                                    </div>        
+                                </div>
+                                     
+                                }    
                             </div>
                         </Popup>
 
-                        {/* <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-
-                            <div className="signup">
-                                { <SignUp ></SignUp> }
-                            </div>
-
-                        </Popup> */}
-                        {/* <Popup open={openLogin} closeOnDocumentClick onClose={closeModalLogin}>
-
-                            <div className="signup">
-                                { <LogIn ></LogIn> }
-                            </div>
-
-                        </Popup> */}
+                      
                     </div>
                 </div>
             </div>
