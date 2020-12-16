@@ -26,12 +26,12 @@ class App extends React.Component{
                   <Route exact path="/search-info" component={Search}>
                   </Route>
         
-                   <Route exact path="/sign-up" component={Register}>
+                   {/* <Route exact path="/sign-up" component={Register}>
                   </Route>
         
                   <Route exact path="/login" component={Login}>
                   </Route> 
-        
+         */}
               
                   <Route exact path="/" component={Home}>
                   </Route>
